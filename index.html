@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="face">
+        <div class="eyes" id="leftEye">
+            <div class="eyeballs" id="leftEyeBall"></div>
+        </div>
+        <div class="eyes" id="rightEye">
+            <div class="eyeballs" id="rightEyeBall"></div>
+        </div>
+        <div id="mouth"></div>
+    </div>
+</body>
+<script>
+    document.querySelector('body').addEventListener('mousemove', eyeball);
+
+    function eyeball() {
+        var eyes = document.querySelectorAll('.eyes');
+        eyes.forEach(function(eyes) {
+            //console.log(eyes.getBoundingClientRect());
+            let x = (eyes.getBoundingClientRect().left) + (eyes.clientWidth / 2);
+            // console.log("x", x);
+            let y = (eyes.getBoundingClientRect().top) + (eyes.clientHeight / 2);
+            // console.log("y", y);
+            let radian = Math.atan2(event.pageX - x, event.pageY - y);
+            //console.log("deg", radian * (180 / Math.PI));
+            let rot = radian * (180 / Math.PI) * -1;
+            eyes.style.transform = "rotate(" + rot + "deg)";
+        });
+    }
+</script>
+
+</html>
